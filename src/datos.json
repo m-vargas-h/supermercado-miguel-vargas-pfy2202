@@ -1,66 +1,74 @@
 [
-    { 
-        "id": 1, 
-        "nombre": "Leche entera 1L", 
-        "categoria": "Lácteos", 
-        "precio": 1190, 
-        "stock": 48, 
-        "descripcion": "Leche entera larga vida, caja de 1 litro." 
+    {
+        "id": 1,
+        "nombre": "Leche entera 1L",
+        "marca": "Colun",
+        "tipo": "Lácteos",
+        "precio": 1190,
+        "stock": 48,
+        "descripcion": "Leche entera larga vida, caja de 1 litro."
     },
-    { 
-        "id": 2, 
-        "nombre": "Yogurt natural 1kg", 
-        "categoria": "Lácteos", 
-        "precio": 2490, 
-        "stock": 6, 
-        "descripcion": "Yogurt natural sin azúcar añadida." 
+    {
+        "id": 2,
+        "nombre": "Yogurt natural 1kg",
+        "marca": "Soprole",
+        "tipo": "Lácteos",
+        "precio": 2490,
+        "stock": 6,
+        "descripcion": "Yogurt natural sin azúcar añadida."
     },
-    { 
-        "id": 3, 
-        "nombre": "Pan molde integral", 
-        "categoria": "Panadería", 
-        "precio": 2290, 
-        "stock": 15, 
-        "descripcion": "Pan de molde integral, 750 g." 
+    {
+        "id": 3,
+        "nombre": "Pan molde integral",
+        "marca": "Ideal",
+        "tipo": "Panadería",
+        "precio": 2290,
+        "stock": 15,
+        "descripcion": "Pan de molde integral, 750 g."
     },
-    { 
-        "id": 4, 
-        "nombre": "Arroz grado 1 1kg", 
-        "categoria": "Despensa", 
-        "precio": 1590, 
-        "stock": 60, 
-        "descripcion": "Arroz grano largo grado 1." 
+    {
+        "id": 4,
+        "nombre": "Arroz grado 1 1kg",
+        "marca": "Tucapel",
+        "tipo": "Despensa",
+        "precio": 1590,
+        "stock": 60,
+        "descripcion": "Arroz grano largo grado 1."
     },
-    { 
-        "id": 5, 
-        "nombre": "Aceite maravilla 1L", 
-        "categoria": "Despensa", 
-        "precio": 2790, 
-        "stock": 0, 
-        "descripcion": "Aceite vegetal de maravilla, botella de 1 litro." 
+    {
+        "id": 5,
+        "nombre": "Aceite maravilla 1L",
+        "marca": "Belmont",
+        "tipo": "Despensa",
+        "precio": 2790,
+        "stock": 0,
+        "descripcion": "Aceite vegetal de maravilla, botella de 1 litro."
     },
-    { 
-        "id": 6, 
-        "nombre": "Manzana roja (kg)", 
-        "categoria": "Frutas y verduras", 
-        "precio": 1490, 
-        "stock": 35, 
-        "descripcion": "Manzana roja, venta por kilo." 
+    {
+        "id": 6,
+        "nombre": "Manzana roja (kg)",
+        "marca": "Granel",
+        "tipo": "Frutas y verduras",
+        "precio": 1490,
+        "stock": 35,
+        "descripcion": "Manzana roja, venta por kilo."
     },
-    { 
-        "id": 7, 
-        "nombre": "Tomate (kg)", 
-        "categoria": "Frutas y verduras", 
-        "precio": 1890, 
-        "stock": 9, 
-        "descripcion": "Tomate larga vida, venta por kilo." 
+    {
+        "id": 7,
+        "nombre": "Tomate (kg)",
+        "marca": "Granel",
+        "tipo": "Frutas y verduras",
+        "precio": 1890,
+        "stock": 9,
+        "descripcion": "Tomate larga vida, venta por kilo."
     },
-    { 
-        "id": 8, 
-        "nombre": "Detergente líquido 3L", 
-        "categoria": "Limpieza", 
-        "precio": 7990, 
-        "stock": 22, 
-        "descripcion": "Detergente líquido para ropa, 3 litros." 
+    {
+        "id": 8,
+        "nombre": "Detergente líquido 3L",
+        "marca": "Omo",
+        "tipo": "Limpieza",
+        "precio": 7990,
+        "stock": 22,
+        "descripcion": "Detergente líquido para ropa, 3 litros."
     }
 ]
