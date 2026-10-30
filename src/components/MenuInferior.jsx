@@ -1,18 +1,22 @@
 import { NavLink } from 'react-router-dom'
 
 function MenuInferior() {
+    const clasesEnlace = ({ isActive }) =>
+        'block rounded-md px-3 py-2 text-sm text-white transition-colors ' +
+        (isActive ? 'bg-green-600' : 'hover:bg-gray-700')
+
     return (
-        <footer className="bg-dark mt-auto py-3">
-            <nav className="container">
-                <ul className="nav nav-pills justify-content-center gap-2">
-                    <li className="nav-item">
-                        <NavLink to="/" end className="nav-link text-white">Inicio</NavLink>
+        <footer className="mt-auto bg-gray-800 py-3">
+            <nav className="mx-auto max-w-6xl px-4">
+                <ul className="flex flex-wrap justify-center gap-2">
+                    <li>
+                        <NavLink to="/" end className={clasesEnlace}>Inicio</NavLink>
                     </li>
-                    <li className="nav-item">
-                        <NavLink to="/quienes-somos" className="nav-link text-white">Quiénes somos</NavLink>
+                    <li>
+                        <NavLink to="/quienes-somos" className={clasesEnlace}>Quiénes somos</NavLink>
                     </li>
-                    <li className="nav-item">
-                        <NavLink to="/preguntas-frecuentes" className="nav-link text-white">Preguntas frecuentes</NavLink>
+                    <li>
+                        <NavLink to="/preguntas-frecuentes" className={clasesEnlace}>Preguntas frecuentes</NavLink>
                     </li>
                 </ul>
             </nav>
