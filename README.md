@@ -1,23 +1,30 @@
 # Supermercado - Gestión de Inventario
 
 Sitio web desarrollado en React para la gestión de inventario de un supermercado.
-Actividad formativa 1 – Semana 1 – Desarrollo Frontend II
 
 ## Tecnologías
 - React + Vite
 - React Router (react-router-dom)
-- Bootstrap 5
+- Estado global con Context API + useReducer
+- Tailwind CSS v4
 
 ## Páginas y rutas
 | Ruta | Página | Descripción |
 |------|--------|-------------|
-| `/` | Inicio | Inventario de productos con filtro por categoría y resumen de stock |
+| `/` | Inicio | Inventario de productos con filtro por tipo y resumen de stock |
 | `/producto/:id` | Detalle de producto | Ruta dinámica con la información de un producto |
+| `/agregar` | Agregar artículo | Formulario para ingresar nuevos artículos al estado global |
+| `/articulos` | Lista de artículos | Tabla con todos los artículos del inventario |
 | `/quienes-somos` | Quiénes somos | Historia, misión, visión y valores del supermercado |
 | `/preguntas-frecuentes` | Preguntas frecuentes | Preguntas sobre el uso del sistema de inventario |
 | `*` | No encontrada | Página para rutas inexistentes |
 
-La navegación entre páginas se realiza desde el menú inferior, sin recargar el sitio (SPA).
+Navegación: menú superior (Agregar artículo, Lista de artículos) y menú inferior (Inicio, Quiénes somos, Preguntas frecuentes).
+
+## Estado global
+`InventarioProvider` envuelve la aplicación y mantiene la lista de artículos con `useReducer`
+(acción `AGREGAR_ARTICULO`). Los componentes acceden a ella con el hook `useInventario()`.
+Cada artículo tiene: nombre, marca, tipo, precio, stock y descripción.
 
 ## Instalación y ejecución
 ```bash
@@ -31,16 +38,23 @@ Luego abrir `http://localhost:5173` en el navegador.
 ## Estructura principal
 ```
 src/
-├── App.jsx                  # Configuración de rutas (React Router)
-├── datos.json               # Datos de productos
+├── App.jsx                     # Rutas (React Router) + InventarioProvider
+├── datos.json                  # Datos iniciales de productos
+├── index.css                   # Importación de Tailwind CSS
+├── context/
+│   ├── InventarioContext.js    # Contexto, reducer, acciones y hook useInventario
+│   └── InventarioProvider.jsx  # Proveedor del estado global
 └── components/
     ├── Header.jsx
-    ├── MenuInferior.jsx     # Menú de navegación inferior
+    ├── MenuPrincipal.jsx       # Menú superior
+    ├── MenuInferior.jsx        # Menú inferior
     ├── FilaProducto.jsx
     ├── EstadoStock.jsx
     └── pages/
         ├── Home.jsx
         ├── DetalleProducto.jsx
+        ├── AgregarArticulo.jsx
+        ├── ListaArticulos.jsx
         ├── QuienesSomos.jsx
         ├── PreguntasFrecuentes.jsx
         └── NoEncontrada.jsx
