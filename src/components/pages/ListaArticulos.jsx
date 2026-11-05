@@ -1,12 +1,19 @@
+import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { useInventario } from '../../context/InventarioContext'
+import { TODAS } from '../../constants/categorias'
+import FiltroCategoria from '../FiltroCategoria'
+import TablaArticulos from '../TablaArticulos'
 
 function ListaArticulos() {
     const { articulos } = useInventario()
     const { state } = useLocation()
+    const [categoria, setCategoria] = useState(TODAS)
 
-    const th = "px-4 py-3 font-semibold"
-    const td = "px-4 py-3"
+    // Lista derivada: el inventario original del estado global no se modifica
+    const articulosFiltrados = categoria === TODAS
+        ? articulos
+        : articulos.filter(articulo => articulo.tipo === categoria)
 
     return (
         <main className="mx-auto w-full max-w-6xl px-4 py-6">
@@ -24,41 +31,19 @@ function ListaArticulos() {
                 </div>
             )}
 
-            <p className="mb-3 text-sm text-gray-600">Total: {articulos.length} artículos en inventario</p>
-
-            {articulos.length === 0 ? (
-                <p className="rounded-lg border border-gray-200 bg-white p-6 text-center text-gray-600">
-                    No hay artículos en el inventario.
+            <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
+                <FiltroCategoria valor={categoria} onCambiar={setCategoria} />
+                <p className="text-sm text-gray-600">
+                    Mostrando {articulosFiltrados.length} de {articulos.length} artículos
                 </p>
-            ) : (
-                <div className="overflow-x-auto rounded-lg border border-gray-200 bg-white shadow-sm">
-                    <table className="min-w-full text-left text-sm">
-                        <thead className="bg-green-100 text-green-900">
-                            <tr>
-                                <th className={th}>#</th>
-                                <th className={th}>Nombre</th>
-                                <th className={th}>Marca</th>
-                                <th className={th}>Tipo</th>
-                                <th className={th}>Precio</th>
-                                <th className={th}>Stock</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {articulos.map(articulo => (
-                                <tr key={articulo.id}
-                                    className="border-b border-gray-200 odd:bg-white even:bg-gray-50 hover:bg-green-50">
-                                    <td className={td}>{articulo.id}</td>
-                                    <td className={td}>{articulo.nombre}</td>
-                                    <td className={td}>{articulo.marca}</td>
-                                    <td className={td}>{articulo.tipo}</td>
-                                    <td className={td}>$ {articulo.precio.toLocaleString('es-CL')}</td>
-                                    <td className={td}>{articulo.stock}</td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
-            )}
+            </div>
+
+            <TablaArticulos
+                articulos={articulosFiltrados}
+                mensajeVacio={categoria === TODAS
+                    ? "No hay artículos en el inventario."
+                    : `No hay artículos en la categoría "${categoria}".`}
+            />
         </main>
     )
 }

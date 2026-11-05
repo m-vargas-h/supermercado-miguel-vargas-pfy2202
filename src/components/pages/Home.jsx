@@ -1,74 +1,44 @@
-import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { useInventario } from '../../context/InventarioContext'
-import FilaProducto from '../FilaProducto'
+import TablaArticulos from '../TablaArticulos'
+
+function TarjetaResumen({ valor, texto, borde }) {
+    return (
+        <div className={"rounded-lg border bg-white p-4 text-center shadow-sm " + borde}>
+            <p className="text-3xl font-bold">{valor}</p>
+            <p className="text-gray-600">{texto}</p>
+        </div>
+    )
+}
 
 function Home() {
-    const { articulos: productos } = useInventario()
-    const [tipo, setTipo] = useState("Todos")
+    const { articulos } = useInventario()
 
-    const tipos = ["Todos", ...new Set(productos.map(p => p.tipo))]
-
-    const productosFiltrados = tipo === "Todos"
-        ? productos
-        : productos.filter(p => p.tipo === tipo)
-
-    const sinStock = productos.filter(p => p.stock === 0).length
-    const stockBajo = productos.filter(p => p.stock > 0 && p.stock < 10).length
-
-    const th = 'px-4 py-3 font-semibold'
+    const sinStock = articulos.filter(a => a.stock === 0).length
+    const stockBajo = articulos.filter(a => a.stock > 0 && a.stock < 10).length
+    const porReponer = articulos.filter(a => a.stock < 10)
 
     return (
         <main className="mx-auto w-full max-w-6xl px-4 py-6">
             <h2 className="mb-6 text-2xl font-bold">Inventario</h2>
 
-            <div className="mb-6 grid gap-4 sm:grid-cols-3">
-                <div className="rounded-lg border border-gray-200 bg-white p-4 text-center shadow-sm">
-                    <p className="text-3xl font-bold">{productos.length}</p>
-                    <p className="text-gray-600">Productos registrados</p>
-                </div>
-                <div className="rounded-lg border border-yellow-400 bg-white p-4 text-center shadow-sm">
-                    <p className="text-3xl font-bold">{stockBajo}</p>
-                    <p className="text-gray-600">Con stock bajo</p>
-                </div>
-                <div className="rounded-lg border border-red-400 bg-white p-4 text-center shadow-sm">
-                    <p className="text-3xl font-bold">{sinStock}</p>
-                    <p className="text-gray-600">Sin stock</p>
-                </div>
+            <div className="mb-8 grid gap-4 sm:grid-cols-3">
+                <TarjetaResumen valor={articulos.length} texto="Productos registrados" borde="border-gray-200" />
+                <TarjetaResumen valor={stockBajo} texto="Con stock bajo" borde="border-yellow-400" />
+                <TarjetaResumen valor={sinStock} texto="Sin stock" borde="border-red-400" />
             </div>
 
-            <div className="mb-4 max-w-xs">
-                <label htmlFor="filtro-tipo" className="mb-1 block text-sm font-medium">Filtrar por tipo</label>
-                <select
-                    id="filtro-tipo"
-                    className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 focus:border-green-600 focus:outline-none focus:ring-2 focus:ring-green-200"
-                    value={tipo}
-                    onChange={e => setTipo(e.target.value)}
-                >
-                    {tipos.map(t => <option key={t} value={t}>{t}</option>)}
-                </select>
+            <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
+                <h3 className="text-lg font-semibold">Artículos por reponer</h3>
+                <Link to="/articulos" className="text-sm font-medium text-green-700 hover:underline">
+                    Ver todos los artículos →
+                </Link>
             </div>
 
-            <div className="overflow-x-auto rounded-lg border border-gray-200 bg-white shadow-sm">
-                <table className="min-w-full text-left text-sm">
-                    <thead className="bg-green-100 text-green-900">
-                        <tr>
-                            <th className={th}>ID</th>
-                            <th className={th}>Producto</th>
-                            <th className={th}>Marca</th>
-                            <th className={th}>Tipo</th>
-                            <th className={th}>Precio</th>
-                            <th className={th}>Stock</th>
-                            <th className={th}>Estado</th>
-                            <th className={th}></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {productosFiltrados.map(producto => (
-                            <FilaProducto key={producto.id} producto={producto} />
-                        ))}
-                    </tbody>
-                </table>
-            </div>
+            <TablaArticulos
+                articulos={porReponer}
+                mensajeVacio="Todos los artículos tienen stock suficiente."
+            />
         </main>
     )
 }
