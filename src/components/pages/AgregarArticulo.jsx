@@ -1,8 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ACCIONES, useInventario } from '../../context/InventarioContext'
-
-const TIPOS = ["Lácteos", "Panadería", "Despensa", "Frutas y verduras", "Carnes", "Bebidas", "Congelados", "Limpieza"]
+import { CATEGORIAS } from '../../constants/categorias'
 
 const FORM_INICIAL = { nombre: "", marca: "", tipo: "", precio: "", stock: "", descripcion: "" }
 
@@ -94,7 +93,7 @@ function AgregarArticulo() {
                         <select id="tipo" name="tipo" value={form.tipo}
                             onChange={handleChange} className={claseInput("tipo")}>
                             <option value="">Selecciona un tipo</option>
-                            {TIPOS.map(t => <option key={t} value={t}>{t}</option>)}
+                            {CATEGORIAS.map(t => <option key={t} value={t}>{t}</option>)}
                         </select>
                     </Campo>
 
