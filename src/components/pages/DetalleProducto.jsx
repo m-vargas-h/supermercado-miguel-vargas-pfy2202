@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { ACCIONES, useInventario } from '../../context/InventarioContext'
 import EstadoStock from '../EstadoStock'
 import SelectorCantidad from '../SelectorCantidad'
@@ -59,8 +59,9 @@ function DetalleProducto() {
                     </ul>
 
                     {mensaje && (
-                        <div className="mb-4 rounded-md border border-green-300 bg-green-50 px-4 py-3 text-green-800">
-                            {mensaje}
+                        <div className="mb-4 flex flex-wrap items-center justify-between gap-2 rounded-md border border-green-300 bg-green-50 px-4 py-3 text-green-800">
+                            <span>{mensaje}</span>
+                            <Link to="/carrito" className="font-medium underline hover:text-green-900">Ver carrito</Link>
                         </div>
                     )}
 
