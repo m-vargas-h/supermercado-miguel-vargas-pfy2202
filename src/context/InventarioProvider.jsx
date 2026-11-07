@@ -1,6 +1,7 @@
 import { useReducer } from 'react'
 import datos from '../datos.json'
-import { InventarioContext, inventarioReducer } from './InventarioContext'
+import { InventarioContext } from './InventarioContext'
+import { inventarioReducer } from './inventarioReducer'
 
 const ESTADO_INICIAL = {
     articulos: datos,

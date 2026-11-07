@@ -1,19 +1,11 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router'
-import { ACCIONES, useInventario } from '../../context/InventarioContext'
+import { useInventario } from '../../context/InventarioContext'
+import { agregarArticulo } from '../../context/inventarioAcciones'
 import { CATEGORIAS } from '../../constants/categorias'
-
-const FORM_INICIAL = { nombre: "", marca: "", tipo: "", precio: "", stock: "", descripcion: "" }
-
-function Campo({ id, etiqueta, error, children }) {
-    return (
-        <div>
-            <label htmlFor={id} className="mb-1 block text-sm font-medium">{etiqueta}</label>
-            {children}
-            {error && <p className="mt-1 text-sm text-red-600">{error}</p>}
-        </div>
-    )
-}
+import { FORM_INICIAL } from '../../constants/articulos'
+import { validarFormularioArticulo } from '../../utils/validaciones'
+import Campo from '../Campo'
 
 function AgregarArticulo() {
     const { dispatch } = useInventario()
@@ -26,34 +18,20 @@ function AgregarArticulo() {
         setForm({ ...form, [name]: value })
     }
 
-    const validar = () => {
-        const nuevosErrores = {}
-        if (form.nombre.trim() === "") nuevosErrores.nombre = "Ingresa el nombre del artículo"
-        if (form.marca.trim() === "") nuevosErrores.marca = "Ingresa la marca"
-        if (form.tipo === "") nuevosErrores.tipo = "Selecciona un tipo de producto"
-        if (form.precio === "" || Number(form.precio) <= 0) nuevosErrores.precio = "El precio debe ser mayor a 0"
-        if (form.stock === "" || Number(form.stock) < 0 || !Number.isInteger(Number(form.stock)))
-            nuevosErrores.stock = "El stock debe ser un número entero mayor o igual a 0"
-        return nuevosErrores
-    }
-
     const handleSubmit = (e) => {
         e.preventDefault()
-        const nuevosErrores = validar()
+        const nuevosErrores = validarFormularioArticulo(form)
         setErrores(nuevosErrores)
         if (Object.keys(nuevosErrores).length > 0) return
 
-        dispatch({
-            type: ACCIONES.AGREGAR_ARTICULO,
-            payload: {
-                nombre: form.nombre.trim(),
-                marca: form.marca.trim(),
-                tipo: form.tipo,
-                precio: Number(form.precio),
-                stock: Number(form.stock),
-                descripcion: form.descripcion.trim(),
-            },
-        })
+        dispatch(agregarArticulo({
+            nombre: form.nombre.trim(),
+            marca: form.marca.trim(),
+            tipo: form.tipo,
+            precio: Number(form.precio),
+            stock: Number(form.stock),
+            descripcion: form.descripcion.trim(),
+        }))
 
         navigate("/articulos", { state: { mensaje: `"${form.nombre.trim()}" se agregó al inventario` } })
     }
@@ -98,12 +76,12 @@ function AgregarArticulo() {
                     </Campo>
 
                     <Campo id="precio" etiqueta="Precio (CLP) *" error={errores.precio}>
-                        <input id="precio" name="precio" type="number" min="1" value={form.precio}
+                        <input id="precio" name="precio" type="text" inputMode="numeric" value={form.precio}
                             onChange={handleChange} className={claseInput("precio")} placeholder="Ej: 1290" />
                     </Campo>
 
                     <Campo id="stock" etiqueta="Stock *" error={errores.stock}>
-                        <input id="stock" name="stock" type="number" min="0" step="1" value={form.stock}
+                        <input id="stock" name="stock" type="text" inputMode="numeric" value={form.stock}
                             onChange={handleChange} className={claseInput("stock")} placeholder="Ej: 20" />
                     </Campo>
 

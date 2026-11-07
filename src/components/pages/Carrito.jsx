@@ -1,5 +1,6 @@
 import { Link } from 'react-router'
-import { ACCIONES, useInventario } from '../../context/InventarioContext'
+import { useInventario } from '../../context/InventarioContext'
+import { vaciarCarrito } from '../../context/inventarioAcciones'
 import { obtenerItemsCarrito, contarUnidades, calcularTotal } from '../../utils/carrito'
 import ItemCarrito from '../ItemCarrito'
 
@@ -55,7 +56,7 @@ function Carrito() {
                             <dd>$ {total.toLocaleString('es-CL')}</dd>
                         </div>
                     </dl>
-                    <button type="button" onClick={() => dispatch({ type: ACCIONES.VACIAR_CARRITO })}
+                    <button type="button" onClick={() => dispatch(vaciarCarrito())}
                         className="w-full rounded-md border border-red-500 px-4 py-2 font-medium text-red-600 transition-colors hover:bg-red-500 hover:text-white">
                         Vaciar carrito
                     </button>

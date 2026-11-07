@@ -1,13 +1,12 @@
 import { Link } from 'react-router'
-import { ACCIONES, useInventario } from '../context/InventarioContext'
+import { useInventario } from '../context/InventarioContext'
+import { aumentarCantidad, disminuirCantidad, quitarDelCarrito } from '../context/inventarioAcciones'
 import SelectorCantidad from './SelectorCantidad'
 
 function ItemCarrito({ item }) {
     const { dispatch } = useInventario()
     const { articulo, cantidad } = item
     const subtotal = articulo.precio * cantidad
-
-    const despachar = (type) => dispatch({ type, payload: { id: articulo.id } })
 
     return (
         <li className="grid gap-3 border-b border-gray-200 p-4 last:border-b-0 sm:grid-cols-[1fr_auto_8rem_auto] sm:items-center">
@@ -26,8 +25,8 @@ function ItemCarrito({ item }) {
             <div>
                 <SelectorCantidad
                     valor={cantidad}
-                    onDisminuir={() => despachar(ACCIONES.DISMINUIR_CANTIDAD)}
-                    onAumentar={() => despachar(ACCIONES.AUMENTAR_CANTIDAD)}
+                    onDisminuir={() => dispatch(disminuirCantidad(articulo.id))}
+                    onAumentar={() => dispatch(aumentarCantidad(articulo.id))}
                     puedeAumentar={articulo.stock > 0}
                 />
             </div>
@@ -37,7 +36,7 @@ function ItemCarrito({ item }) {
                 $ {subtotal.toLocaleString('es-CL')}
             </p>
 
-            <button type="button" onClick={() => despachar(ACCIONES.QUITAR_DEL_CARRITO)}
+            <button type="button" onClick={() => dispatch(quitarDelCarrito(articulo.id))}
                 className="justify-self-start text-sm font-medium text-red-600 hover:underline sm:justify-self-end">
                 Quitar
             </button>

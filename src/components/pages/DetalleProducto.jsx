@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router'
-import { ACCIONES, useInventario } from '../../context/InventarioContext'
+import { useInventario } from '../../context/InventarioContext'
+import { agregarAlCarrito } from '../../context/inventarioAcciones'
 import EstadoStock from '../EstadoStock'
 import SelectorCantidad from '../SelectorCantidad'
 
@@ -31,10 +32,7 @@ function DetalleProducto() {
     const enCarrito = carrito.find(item => item.id === producto.id)?.cantidad ?? 0
 
     const handleAgregar = () => {
-        dispatch({
-            type: ACCIONES.AGREGAR_AL_CARRITO,
-            payload: { id: producto.id, cantidad: cantidadValida },
-        })
+        dispatch(agregarAlCarrito(producto.id, cantidadValida))
         setMensaje(`Se ${cantidadValida === 1 ? "agregó 1 unidad" : `agregaron ${cantidadValida} unidades`} al carrito`)
         setCantidad(1)
     }
