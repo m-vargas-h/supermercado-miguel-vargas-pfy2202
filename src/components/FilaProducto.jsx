@@ -14,7 +14,7 @@ function FilaProducto({ producto }) {
             </td>
             <td className={td}>{producto.marca}</td>
             <td className={td}>{producto.tipo}</td>
-            <td className={td}>$ {producto.precio.toLocaleString('es-CL')}</td>
+            <td className={td + ' whitespace-nowrap'}>$ {producto.precio.toLocaleString('es-CL')}</td>
             <td className={td}>{producto.stock}</td>
             <td className={td}><EstadoStock stock={producto.stock} /></td>
             <td className={td}>
