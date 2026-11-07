@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router'
 import { useInventario } from '../context/InventarioContext'
 import { contarUnidades } from '../utils/carrito'
 

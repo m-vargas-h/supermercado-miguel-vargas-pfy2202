@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router'
 import { useInventario } from '../../context/InventarioContext'
 import TablaArticulos from '../TablaArticulos'
 

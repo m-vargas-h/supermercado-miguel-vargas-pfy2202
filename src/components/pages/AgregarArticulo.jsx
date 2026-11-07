@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router'
 import { ACCIONES, useInventario } from '../../context/InventarioContext'
 import { CATEGORIAS } from '../../constants/categorias'
 

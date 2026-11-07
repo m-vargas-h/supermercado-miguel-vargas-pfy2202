@@ -4,7 +4,7 @@ Sitio web desarrollado en React para la gestión de inventario de un supermercad
 
 ## Tecnologías
 - React + Vite
-- React Router (react-router-dom)
+- React Router (react-router)
 - Estado global con Context API + useReducer
 - Tailwind CSS v4
 

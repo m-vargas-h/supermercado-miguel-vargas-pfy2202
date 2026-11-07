@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router'
 import { ACCIONES, useInventario } from '../../context/InventarioContext'
 import EstadoStock from '../EstadoStock'
 import SelectorCantidad from '../SelectorCantidad'

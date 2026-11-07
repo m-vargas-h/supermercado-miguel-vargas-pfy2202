@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router'
 import { useInventario } from '../../context/InventarioContext'
 import { TODAS } from '../../constants/categorias'
 import FiltroCategoria from '../FiltroCategoria'

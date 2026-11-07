@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router'
 import { ACCIONES, useInventario } from '../context/InventarioContext'
 import SelectorCantidad from './SelectorCantidad'
 

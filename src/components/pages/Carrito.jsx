@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router'
 import { ACCIONES, useInventario } from '../../context/InventarioContext'
 import { obtenerItemsCarrito, contarUnidades, calcularTotal } from '../../utils/carrito'
 import ItemCarrito from '../ItemCarrito'
