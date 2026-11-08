@@ -3,7 +3,7 @@ import { NavLink } from 'react-router'
 function MenuInferior() {
     const clasesEnlace = ({ isActive }) =>
         'block rounded-md px-3 py-2 text-sm text-white transition-colors ' +
-        (isActive ? 'bg-green-600' : 'hover:bg-gray-700')
+        (isActive ? 'bg-marca-600' : 'hover:bg-gray-700')
 
     return (
         <footer className="mt-auto bg-gray-800 py-3">

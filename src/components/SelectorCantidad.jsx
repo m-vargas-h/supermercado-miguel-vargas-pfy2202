@@ -1,6 +1,6 @@
 function SelectorCantidad({ valor, onDisminuir, onAumentar, puedeDisminuir = true, puedeAumentar = true }) {
-    const boton = "flex h-9 w-9 items-center justify-center text-lg font-bold text-green-700 transition-colors " +
-        "hover:bg-green-50 disabled:cursor-not-allowed disabled:text-gray-300 disabled:hover:bg-transparent"
+    const boton = "flex h-9 w-9 items-center justify-center text-lg font-bold text-marca-700 transition-colors " +
+        "hover:bg-marca-50 disabled:cursor-not-allowed disabled:text-gray-300 disabled:hover:bg-transparent"
 
     return (
         <div className="inline-flex items-center overflow-hidden rounded-md border border-gray-300 bg-white">

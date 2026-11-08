@@ -11,7 +11,7 @@ function ItemCarrito({ item }) {
     return (
         <li className="grid gap-3 border-b border-gray-200 p-4 last:border-b-0 sm:grid-cols-[1fr_auto_8rem_auto] sm:items-center">
             <div>
-                <Link to={"/producto/" + articulo.id} className="font-semibold text-green-800 hover:underline">
+                <Link to={"/producto/" + articulo.id} className="font-semibold text-marca-800 hover:underline">
                     {articulo.nombre}
                 </Link>
                 <p className="text-sm text-gray-600">

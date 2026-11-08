@@ -6,6 +6,7 @@ import { CATEGORIAS } from '../../constants/categorias'
 import { FORM_INICIAL } from '../../constants/articulos'
 import { validarFormularioArticulo } from '../../utils/validaciones'
 import Campo from '../Campo'
+import Boton from '../Boton'
 
 function AgregarArticulo() {
     const { dispatch } = useInventario()
@@ -41,20 +42,16 @@ function AgregarArticulo() {
         setErrores({})
     }
 
-    const claseInput = (campo) =>
-        "w-full rounded-md border bg-white px-3 py-2 focus:outline-none focus:ring-2 " +
-        (errores[campo]
-            ? "border-red-500 focus:ring-red-200"
-            : "border-gray-300 focus:border-green-600 focus:ring-green-200")
+    const claseInput = (campo) => "campo-input" + (errores[campo] ? " campo-input-error" : "")
 
     return (
-        <main className="mx-auto w-full max-w-6xl px-4 py-6">
-            <h2 className="mb-6 text-2xl font-bold">Agregar artículo</h2>
+        <main className="contenedor">
+            <h2 className="titulo-pagina">Agregar artículo</h2>
 
             <form
                 onSubmit={handleSubmit}
                 noValidate
-                className="max-w-2xl rounded-lg border border-gray-200 bg-white p-6 shadow-sm"
+                className="tarjeta max-w-2xl p-6"
             >
                 <div className="grid gap-4 sm:grid-cols-2">
                     <Campo id="nombre" etiqueta="Nombre *" error={errores.nombre}>
@@ -94,14 +91,8 @@ function AgregarArticulo() {
                 </div>
 
                 <div className="mt-6 flex gap-3">
-                    <button type="submit"
-                        className="rounded-md bg-green-600 px-4 py-2 font-medium text-white transition-colors hover:bg-green-700">
-                        Guardar artículo
-                    </button>
-                    <button type="button" onClick={handleLimpiar}
-                        className="rounded-md border border-gray-300 px-4 py-2 font-medium text-gray-700 transition-colors hover:bg-gray-100">
-                        Limpiar
-                    </button>
+                    <Boton type="submit">Guardar artículo</Boton>
+                    <Boton variante="neutro" onClick={handleLimpiar}>Limpiar</Boton>
                 </div>
             </form>
         </main>

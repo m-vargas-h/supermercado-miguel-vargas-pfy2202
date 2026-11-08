@@ -8,7 +8,7 @@ function FiltroCategoria({ valor, onCambiar }) {
             </label>
             <select
                 id="filtro-categoria"
-                className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 focus:border-green-600 focus:outline-none focus:ring-2 focus:ring-green-200"
+                className="campo-input"
                 value={valor}
                 onChange={e => onCambiar(e.target.value)}
             >

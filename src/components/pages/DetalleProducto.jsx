@@ -4,6 +4,7 @@ import { useInventario } from '../../context/InventarioContext'
 import { agregarAlCarrito } from '../../context/inventarioAcciones'
 import EstadoStock from '../EstadoStock'
 import SelectorCantidad from '../SelectorCantidad'
+import Boton from '../Boton'
 
 function DetalleProducto() {
     const { id } = useParams()
@@ -14,14 +15,11 @@ function DetalleProducto() {
 
     const producto = articulos.find(p => p.id === Number(id))
 
-    const botonPrincipal = "rounded-md bg-green-600 px-4 py-2 font-medium text-white transition-colors hover:bg-green-700 disabled:cursor-not-allowed disabled:bg-gray-300"
-    const botonSecundario = "rounded-md border border-green-600 px-4 py-2 font-medium text-green-700 transition-colors hover:bg-green-600 hover:text-white"
-
     if (!producto) {
         return (
-            <main className="mx-auto w-full max-w-6xl px-4 py-6">
+            <main className="contenedor">
                 <h2 className="mb-4 text-2xl font-bold">Producto no encontrado</h2>
-                <button className={botonPrincipal} onClick={() => navigate("/articulos")}>Volver a la lista</button>
+                <Boton to="/articulos">Volver a la lista</Boton>
             </main>
         )
     }
@@ -38,9 +36,9 @@ function DetalleProducto() {
     }
 
     return (
-        <main className="mx-auto w-full max-w-6xl px-4 py-6">
-            <div className="max-w-md overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm">
-                <div className="bg-green-700 px-4 py-2 font-bold text-white">
+        <main className="contenedor">
+            <div className="tarjeta max-w-md overflow-hidden">
+                <div className="bg-marca-700 px-4 py-2 font-bold text-white">
                     Producto #{producto.id}
                 </div>
                 <div className="p-4">
@@ -57,9 +55,9 @@ function DetalleProducto() {
                     </ul>
 
                     {mensaje && (
-                        <div className="mb-4 flex flex-wrap items-center justify-between gap-2 rounded-md border border-green-300 bg-green-50 px-4 py-3 text-green-800">
+                        <div className="alerta-exito mb-4 flex flex-wrap items-center justify-between gap-2">
                             <span>{mensaje}</span>
-                            <Link to="/carrito" className="font-medium underline hover:text-green-900">Ver carrito</Link>
+                            <Link to="/carrito" className="font-medium underline">Ver carrito</Link>
                         </div>
                     )}
 
@@ -76,13 +74,11 @@ function DetalleProducto() {
                                 puedeDisminuir={cantidadValida > 1}
                                 puedeAumentar={cantidadValida < producto.stock}
                             />
-                            <button className={botonPrincipal} onClick={handleAgregar}>
-                                Agregar al carrito
-                            </button>
+                            <Boton onClick={handleAgregar}>Agregar al carrito</Boton>
                         </div>
                     )}
 
-                    <button className={botonSecundario} onClick={() => navigate(-1)}>Volver</button>
+                    <Boton variante="secundario" onClick={() => navigate(-1)}>Volver</Boton>
                 </div>
             </div>
         </main>

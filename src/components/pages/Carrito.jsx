@@ -3,6 +3,7 @@ import { useInventario } from '../../context/InventarioContext'
 import { vaciarCarrito } from '../../context/inventarioAcciones'
 import { obtenerItemsCarrito, contarUnidades, calcularTotal } from '../../utils/carrito'
 import ItemCarrito from '../ItemCarrito'
+import Boton from '../Boton'
 
 function Carrito() {
     const { articulos, carrito, dispatch } = useInventario()
@@ -13,34 +14,31 @@ function Carrito() {
 
     if (items.length === 0) {
         return (
-            <main className="mx-auto w-full max-w-6xl px-4 py-6">
-                <h2 className="mb-6 text-2xl font-bold">Carrito de compras</h2>
-                <div className="rounded-lg border border-gray-200 bg-white p-6 text-center shadow-sm">
+            <main className="contenedor">
+                <h2 className="titulo-pagina">Carrito de compras</h2>
+                <div className="tarjeta p-6 text-center">
                     <p className="mb-4 text-gray-600">Tu carrito está vacío.</p>
-                    <Link to="/articulos"
-                        className="rounded-md bg-green-600 px-4 py-2 font-medium text-white transition-colors hover:bg-green-700">
-                        Ver artículos
-                    </Link>
+                    <Boton to="/articulos">Ver artículos</Boton>
                 </div>
             </main>
         )
     }
 
     return (
-        <main className="mx-auto w-full max-w-6xl px-4 py-6">
+        <main className="contenedor">
             <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
                 <h2 className="text-2xl font-bold">Carrito de compras</h2>
-                <Link to="/articulos" className="text-sm font-medium text-green-700 hover:underline">
+                <Link to="/articulos" className="enlace text-sm">
                     ← Seguir agregando artículos
                 </Link>
             </div>
 
             <div className="grid gap-6 lg:grid-cols-[1fr_18rem] lg:items-start">
-                <ul className="overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm">
+                <ul className="tarjeta overflow-hidden">
                     {items.map(item => <ItemCarrito key={item.id} item={item} />)}
                 </ul>
 
-                <aside className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm">
+                <aside className="tarjeta p-4">
                     <h3 className="mb-3 text-lg font-semibold">Resumen</h3>
                     <dl className="mb-4 space-y-2 text-sm">
                         <div className="flex justify-between">
@@ -56,10 +54,9 @@ function Carrito() {
                             <dd>$ {total.toLocaleString('es-CL')}</dd>
                         </div>
                     </dl>
-                    <button type="button" onClick={() => dispatch(vaciarCarrito())}
-                        className="w-full rounded-md border border-red-500 px-4 py-2 font-medium text-red-600 transition-colors hover:bg-red-500 hover:text-white">
+                    <Boton variante="peligro" className="w-full" onClick={() => dispatch(vaciarCarrito())}>
                         Vaciar carrito
-                    </button>
+                    </Boton>
                 </aside>
             </div>
         </main>

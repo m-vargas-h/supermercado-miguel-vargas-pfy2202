@@ -7,7 +7,7 @@ function EstadoStock({ stock }) {
     if (stock < 10)
         return <span className={base + ' bg-yellow-100 text-yellow-800'}>Stock bajo</span>
 
-    return <span className={base + ' bg-green-100 text-green-700'}>Disponible</span>
+    return <span className={base + ' bg-marca-100 text-marca-700'}>Disponible</span>
 }
 
 export default EstadoStock

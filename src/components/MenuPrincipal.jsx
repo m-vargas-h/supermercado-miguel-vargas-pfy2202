@@ -14,7 +14,7 @@ function MenuPrincipal() {
 
     const clasesEnlace = ({ isActive }) =>
         'flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors ' +
-        (isActive ? 'bg-white text-green-700' : 'text-white hover:bg-green-600')
+        (isActive ? 'bg-white text-marca-700' : 'text-white hover:bg-marca-600')
 
     return (
         <nav>

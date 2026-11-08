@@ -1,9 +1,10 @@
 import { useState } from 'react'
-import { Link, useLocation } from 'react-router'
+import { useLocation } from 'react-router'
 import { useInventario } from '../../context/InventarioContext'
 import { TODAS } from '../../constants/categorias'
 import FiltroCategoria from '../FiltroCategoria'
 import TablaArticulos from '../TablaArticulos'
+import Boton from '../Boton'
 
 function ListaArticulos() {
     const { articulos } = useInventario()
@@ -16,20 +17,13 @@ function ListaArticulos() {
         : articulos.filter(articulo => articulo.tipo === categoria)
 
     return (
-        <main className="mx-auto w-full max-w-6xl px-4 py-6">
+        <main className="contenedor">
             <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
                 <h2 className="text-2xl font-bold">Lista de artículos</h2>
-                <Link to="/agregar"
-                    className="rounded-md bg-green-600 px-4 py-2 font-medium text-white transition-colors hover:bg-green-700">
-                    + Agregar artículo
-                </Link>
+                <Boton to="/agregar">+ Agregar artículo</Boton>
             </div>
 
-            {state?.mensaje && (
-                <div className="mb-4 rounded-md border border-green-300 bg-green-50 px-4 py-3 text-green-800">
-                    {state.mensaje}
-                </div>
-            )}
+            {state?.mensaje && <div className="alerta-exito mb-4">{state.mensaje}</div>}
 
             <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
                 <FiltroCategoria valor={categoria} onCambiar={setCategoria} />

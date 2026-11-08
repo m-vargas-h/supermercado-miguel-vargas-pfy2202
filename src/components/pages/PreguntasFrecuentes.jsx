@@ -31,10 +31,10 @@ function PreguntasFrecuentes() {
     ]
 
     return (
-        <main className="mx-auto w-full max-w-6xl px-4 py-6">
-            <h2 className="mb-6 text-2xl font-bold">Preguntas frecuentes</h2>
+        <main className="contenedor">
+            <h2 className="titulo-pagina">Preguntas frecuentes</h2>
 
-            <div className="divide-y divide-gray-200 overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm">
+            <div className="tarjeta divide-y divide-gray-200 overflow-hidden">
                 {preguntas.map((item, i) => {
                     const estaAbierta = abierta === i
                     return (
@@ -47,7 +47,7 @@ function PreguntasFrecuentes() {
                                     aria-controls={"faq-" + i}
                                     className={
                                         "flex w-full items-center justify-between px-4 py-3 text-left font-medium transition-colors " +
-                                        (estaAbierta ? "bg-green-50 text-green-800" : "hover:bg-gray-50")
+                                        (estaAbierta ? "bg-marca-50 text-marca-800" : "hover:bg-gray-50")
                                     }
                                 >
                                     {item.pregunta}
