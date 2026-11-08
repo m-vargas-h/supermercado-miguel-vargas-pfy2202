@@ -13,8 +13,8 @@ function PreguntasFrecuentes() {
             respuesta: "Indica que el producto tiene menos de 10 unidades disponibles y debe considerarse para reposición."
         },
         {
-            pregunta: "¿Cómo filtro los productos por tipo?",
-            respuesta: "En la página de inicio, usa el selector \"Filtrar por tipo\" sobre la tabla para ver solo los productos de un tipo."
+            pregunta: "¿Cómo filtro los productos por categoría?",
+            respuesta: "En \"Lista de artículos\", usa el selector \"Filtrar por categoría\" para ver solo los productos de esa categoría. El filtro no modifica el inventario: al volver a \"Todas\" se muestran todos los artículos."
         },
         {
             pregunta: "¿Cómo agrego un nuevo artículo?",
@@ -22,7 +22,11 @@ function PreguntasFrecuentes() {
         },
         {
             pregunta: "¿Cómo veo el detalle de un producto?",
-            respuesta: "Haz clic en el botón \"Ver detalle\" de la fila del producto. Se abrirá una página con toda su información."
+            respuesta: "Haz clic en el nombre del producto o en el botón \"Ver detalle\". Se abrirá una página con toda su información."
+        },
+        {
+            pregunta: "¿Cómo funciona el carrito?",
+            respuesta: "Desde el detalle de un producto elige la cantidad y presiona \"Agregar al carrito\". Esas unidades se descuentan del stock. En la página \"Carrito\" puedes aumentar o disminuir cantidades, quitar productos o vaciar el carrito, y el inventario se actualiza en cada cambio."
         },
         {
             pregunta: "¿Qué hago si un producto aparece sin stock?",
